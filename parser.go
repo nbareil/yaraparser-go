@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"strings"
+	"unicode"
 )
 
 // Parser represents a parser.
@@ -186,13 +187,46 @@ func (p *Parser) parseStringsSection(rule *YaraRule) error {
 				Type:   RegularString,
 				String: val,
 			}
-		}
-		if tok != QuotedString {
-			return fmt.Errorf("found %q, expecting a quoted string, token=%q", val, tok)
-		}
 
+		case CurlyBraceOpen:
+			pattern, err := p.parseHexFmt()
+			if err != nil {
+				return err
+			}
+
+			rule.Strings[name] = *pattern
+		}
 	}
 	return nil
+}
+
+func (p *Parser) parseHexFmt() (*YaraPattern, error) {
+	var buf []string
+
+	for {
+		tok, lit := p.scanIgnoreWhitespace()
+		if tok == WS {
+			continue
+		} else if tok == CurlyBraceClose || tok == Eof {
+			break
+		} else if tok != Num && tok != Asterisk && tok != QuestionMark && tok != Ident {
+			return nil, fmt.Errorf("found %q, expecting hex format", lit)
+		}
+		if tok == Ident {
+			for _, ch := range lit {
+				ch := unicode.ToLower(ch)
+				if !(ch >= 'a' && ch <= 'f') {
+					return nil, fmt.Errorf("found %q, expecting hex format", lit)
+				}
+			}
+		}
+
+		buf = append(buf, lit)
+	}
+	return &YaraPattern{
+		Type: HexFmt,
+		Hex:  strings.Join(buf, ""),
+	}, nil
 }
 
 func (p *Parser) parseConditionsSection(rule *YaraRule) error {

@@ -13,7 +13,7 @@ type YaraPatternType int
 const (
 	RegularString YaraPatternType = iota
 	Regexp
-	Hexa
+	HexFmt
 )
 
 type YaraModifier string
@@ -22,7 +22,7 @@ type YaraPattern struct {
 	Type      YaraPatternType
 	String    string
 	Regexp    string
-	Hexa      string
+	Hex       string
 	Modifiers []YaraModifier
 }
 

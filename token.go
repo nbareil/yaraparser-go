@@ -21,6 +21,7 @@ const (
 	DoubleQuote
 	QuotedString
 	Equal
+	QuestionMark
 
 	// Condition definition
 	ParenOpen
@@ -29,5 +30,6 @@ const (
 	Of
 	Them
 	Num
+	Alpha
 	Asterisk
 )

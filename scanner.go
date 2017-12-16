@@ -31,6 +31,10 @@ func isTagMarker(ch rune) bool {
 	return ch == ':'
 }
 
+func isHexFormat(ch rune) bool {
+	return isDigit(ch) || ch == '?' || ch == '*'
+}
+
 // Scanner is bla
 type Scanner struct {
 	r *bufio.Reader
