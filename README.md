@@ -1,5 +1,10 @@
 # yaraparser-go
 
+
+[![Coverage Status](https://coveralls.io/repos/github/nbareil/yaraparser-go/badge.svg?branch=master)](https://coveralls.io/github/nbareil/yaraparser-go?branch=master)
+[![Build Status](https://travis-ci.org/nbareil/yaraparser-go.svg?branch=master)](https://travis-ci.org/nbareil/yaraparser-go#)
+
+
 Scanning and parsing yara files without lex/yacc grammar.
 
 ⚠️  This project is just for fun, it is not (intented to be) finished. If you want something serious, use [Yara-Rules/yago](https://github.com/Yara-Rules/yago) from [@Xumeiquer](https://github.com/Xumeiquer)!
