@@ -95,7 +95,6 @@ func (s *Scanner) Scan() (tok Token, lit string) {
 		return ParenOpen, "("
 	case ')':
 		return ParenClose, ")"
-
 	}
 
 	return Illegal, string(ch)
@@ -122,17 +121,19 @@ func (s *Scanner) scanVarIdentifier() (tok Token, lit string) {
 }
 func (s *Scanner) scanQuotedString() (tok Token, lit string) {
 	var buf bytes.Buffer
+	var prev rune
 
 	for {
 		ch := s.read()
 		if ch == eof {
 			break
-		} else if ch == '"' {
+		} else if ch == '"' && prev != '\\' {
 			// closing quote, do not capture it
 			break
 		}
 
 		buf.WriteRune(ch)
+		prev = ch
 	}
 	return QuotedString, buf.String()
 }

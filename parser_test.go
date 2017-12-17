@@ -53,7 +53,7 @@ func TestParser_Test(t *testing.T) {
 			s: `rule foobar { meta: author = "she said \"hello\""}`,
 			rule: &yaraparser.YaraRule{
 				Name:  "foobar",
-				Metas: map[string]string{"author": "Roger"},
+				Metas: map[string]string{"author": `she said \"hello\"`},
 			},
 		},
 
@@ -63,7 +63,8 @@ func TestParser_Test(t *testing.T) {
 			rule: &yaraparser.YaraRule{
 				Name: "foobar",
 			},
-		}, {
+		},
+		{
 			s: "// simple comment\nrule foobar {}",
 			rule: &yaraparser.YaraRule{
 				Name: "foobar",
