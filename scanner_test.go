@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"."
+	"github.com/nbareil/yaraparser-go"
 )
 
 func TestScanner_Scan(t *testing.T) {

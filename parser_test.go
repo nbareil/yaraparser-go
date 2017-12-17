@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"."
+	"github.com/nbareil/yaraparser-go"
 )
 
 func TestParser_Test(t *testing.T) {
