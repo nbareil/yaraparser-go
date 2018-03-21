@@ -7,8 +7,7 @@
 
 Scanning and parsing yara files without lex/yacc grammar.
 
-⚠️  This project is just for fun, it is not (intented to be) finished. If you want something serious, use [Yara-Rules/yago](https://github.com/Yara-Rules/yago) from [@Xumeiquer](https://github.com/Xumeiquer)!
-
+⚠️  This project is just for fun, it is not (intented to be) finished. If you want something serious, use [yara-parser](https://github.com/Northern-Lights/yara-parser)!
 
 # Status
 
